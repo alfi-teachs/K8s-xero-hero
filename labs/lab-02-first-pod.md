@@ -372,7 +372,7 @@ Example:
 ```bash
 kubectl apply -f pod.yaml
 ```
-Commands Learned
+## Commands Learned
 ```bash
 kubectl get pods
 
@@ -387,10 +387,11 @@ kubectl exec -it nginx-pod -- /bin/bash
 kubectl get pod nginx-pod -o yaml
 
 kubectl delete pod nginx-pod
-Cleanup
+```
+### Cleanup
 
 Delete Pod:
-
+```bash
 kubectl delete pod nginx-pod
 ```
 ## Navigation

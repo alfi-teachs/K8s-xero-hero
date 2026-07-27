@@ -94,18 +94,18 @@ Kubernetes immediately creates the Pod.
 We describe the desired state in a YAML file.
 
 Example:
-
+```bash
 kind: Pod
 metadata:
   name: nginx-pod
-
+```
 Then apply:
-
+```bash
 kubectl apply -f pod.yaml
-
+```
 Kubernetes creates the required resource.
 
-Prerequisites
+#### Prerequisites
 
 Required:
 ```bash
@@ -124,31 +124,31 @@ NAME       STATUS   ROLES
 minikube   Ready    control-plane
 
 Lab Steps
-Step 1 - Check Existing Pods
+### Step 1 - Check Existing Pods
 
 Command:
-
+```bash
 kubectl get pods
-
+```
 Expected:
 
 No resources found in default namespace.
-Step 2 - Create Pod YAML File
+### Step 2 - Create Pod YAML File
 
 Go to YAML folder:
-
+```bash
 cd yaml/lab-02
-
+```
 Create file:
-
+```bash
 touch pod.yaml
-
+```
 Open:
 
 code pod.yaml
 
 Add:
-
+```bash
 apiVersion: v1
 
 kind: Pod
@@ -164,47 +164,10 @@ spec:
       image: nginx:latest
       ports:
         - containerPort: 80
-
+```
 Save the file.
 
-Understanding YAML
-apiVersion
 
-Defines Kubernetes API version.
-
-Example:
-
-apiVersion: v1
-kind
-
-Defines the resource type.
-
-Example:
-
-kind: Pod
-metadata
-
-Contains information about the object.
-
-Example:
-
-metadata:
-  name: nginx-pod
-spec
-
-Defines desired configuration.
-
-Example:
-
-spec:
-  containers:
-containers
-
-Defines application containers.
-
-Example:
-
-image: nginx:latest
 ### Step 3 - Create Pod
 
 Move back:
@@ -228,7 +191,7 @@ Expected:
 
 NAME        READY   STATUS
 nginx-pod   1/1     Running
-###Step 5 - Watch Pod Creation
+### Step 5 - Watch Pod Creation
 
 Command:
 ```bash

@@ -59,7 +59,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 |------|-------|--------|
 | 15 | [EmptyDir](labs/lab-15-emptydir.md) | ⬜ |
 | 16 | [Persistent Volume (PV)](labs/lab-16-persistent-volume.md) | ⬜ |
-| 17 | [Persistent Volume Claim (PVC)](labs/lab-17-persistent-volume-claim.md) | ⬜ |
+| 17 | [HostPath Volume](labs/lab-17-hostpath.md) | ⬜ |
 | 18 | [HostPath Volume](labs/lab-18-hostpath.md) | ⬜ |
 
 ---

@@ -78,7 +78,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 22 | [CPU Limits](labs/lab-22-cpu-limits.md) | ⬜ | 
+| 22 | [CPU Limits](labs/lab-22-cpu-memory-limits.md) | ⬜ |
 | 23 | 
 | 24 | [Namespaces](labs/lab-24-namespaces.md) | ⬜ |
 

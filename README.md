@@ -60,7 +60,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | 15 | [EmptyDir](labs/lab-15-emptydir.md) | ⬜ |
 | 16 | [Persistent Volume (PV)](labs/lab-16-persistent-volume.md) | ⬜ |
 | 17 | [HostPath Volume](labs/lab-17-hostpath.md) | ⬜ |
-| 18 | [HostPath Volume](labs/lab-18-hostpath.md) | ⬜ |
+| 18 | [Taints and Tolerations](labs/lab-18-taints-tolerations.md) | ⬜ |
 
 ---
 
@@ -69,7 +69,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | Lab | Topic | Status |
 |------|-------|--------|
 | 19 | [Node Selector](labs/lab-19-node-selector.md) | ⬜ |
-| 20 | [Taints and Tolerations](labs/lab-20-taints-tolerations.md) | ⬜ |
+| 20 |
 | 21 | [Node Affinity](labs/lab-21-node-affinity.md) | ⬜ |
 
 ---

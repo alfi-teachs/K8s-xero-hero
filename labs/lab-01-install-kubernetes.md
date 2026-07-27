@@ -2,11 +2,6 @@
 
 ## Objective
 
-## What You Will Learn
-# LAB 01 - Install Kubernetes
-
-## Objective
-
 In this lab, you will learn:
 
 - What Kubernetes is
@@ -18,8 +13,16 @@ In this lab, you will learn:
 - Verify Kubernetes cluster health
 - Use basic kubectl commands
 
----
+## What You Will Learn
+By the end of this lab, you will understand:
 
+- What Kubernetes does
+- Kubernetes Cluster
+- Control Plane components
+- Worker Node components
+- How kubectl communicates with Kubernetes
+- How to create and verify a local Kubernetes cluster using Minikube
+---
 # What is Kubernetes?
 
 Kubernetes is an open-source container orchestration platform.
@@ -44,10 +47,23 @@ Your application has:
 - Database container
 
 If one container crashes, Kubernetes automatically creates a new one.
+## Real World Example
 
+Imagine you have an online shopping website.
+
+Your application contains:
+
+- Frontend container
+- Backend container
+- Database container
+
+If a container crashes, Kubernetes automatically detects the failure and creates a new container.
+
+Kubernetes acts as a manager that maintains the desired state of your application.
 ---
 
 # Kubernetes Architecture
+
              Kubernetes Cluster
 
                    |

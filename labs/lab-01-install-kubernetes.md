@@ -2,11 +2,6 @@
 
 ## Objective
 
-## What You Will Learn
-# LAB 01 - Install Kubernetes
-
-## Objective
-
 In this lab, you will learn:
 
 - What Kubernetes is
@@ -18,8 +13,16 @@ In this lab, you will learn:
 - Verify Kubernetes cluster health
 - Use basic kubectl commands
 
----
+## What You Will Learn
+By the end of this lab, you will understand:
 
+- What Kubernetes does
+- Kubernetes Cluster
+- Control Plane components
+- Worker Node components
+- How kubectl communicates with Kubernetes
+- How to create and verify a local Kubernetes cluster using Minikube
+---
 # What is Kubernetes?
 
 Kubernetes is an open-source container orchestration platform.
@@ -44,29 +47,38 @@ Your application has:
 - Database container
 
 If one container crashes, Kubernetes automatically creates a new one.
+## Real World Example
 
+Imagine you have an online shopping website.
+
+Your application contains:
+
+- Frontend container
+- Backend container
+- Database container
+
+If a container crashes, Kubernetes automatically detects the failure and creates a new container.
+
+Kubernetes acts as a manager that maintains the desired state of your application.
 ---
 
 # Kubernetes Architecture
 
-A Kubernetes cluster has two main parts:
-Kubernetes Cluster
+             Kubernetes Cluster
 
-    |
-    |
+                   |
+                   |
 
-+-------------------+
-| Control Plane |
-+-------------------+
+          +----------------+
+          |  Control Plane |
+          +----------------+
 
-    |
-    |
+                   |
+                   |
 
-+-------------------+
-| Worker Nodes |
-+-------------------+
-
-
+          +----------------+
+          |  Worker Nodes  |
+          +----------------+
 ---
 
 # Control Plane (Master Node)
@@ -85,15 +97,31 @@ When we run:
 
 ```bash
 kubectl get pods
-kubectl talks to the API Server.
-Scheduler
+```
+kubectl sends the request to the API Server.
+
+Example:
+
+```bash
+User
+ |
+ |
+kubectl
+ |
+ |
+API Server
+ |
+ |
+Kubernetes Cluster
+```
+### Scheduler
 
 Scheduler decides:
 
 "On which worker node should this Pod run?"
 
 Example:
-
+```bash
 New Pod
    |
    |
@@ -101,7 +129,10 @@ Scheduler
    |
    |
 Worker Node 1
-Controller Manager
+```
+The Scheduler checks available resources and selects the best worker node.
+
+### Controller Manager
 
 Controller Manager watches the desired state.
 
@@ -119,7 +150,7 @@ Running Pods = 2
 
 Controller creates a new Pod.
 
-etcd
+### etcd
 
 etcd stores Kubernetes cluster information.
 
@@ -129,97 +160,103 @@ Nodes
 Pods
 Services
 Configurations
-Worker Node
+# Worker Node
 
-Worker nodes run the actual applications.
+Worker Nodes run the actual applications.
 
-Components:
+Each Worker Node contains:
 
-Kubelet
+### Kubelet
 
 Kubelet communicates with the Control Plane.
 
-It ensures containers are running.
+Responsibilities:
 
-Container Runtime
+Receive instructions from API Server
+Create containers
+Monitor container health
+### Container Runtime
 
-Runs containers.
+Container Runtime runs containers.
 
 Examples:
 
 Docker
 containerd
-kube-proxy
+### kube-proxy
 
-Handles network communication between Pods and Services.
+kube-proxy manages network communication.
+
+It allows:
+
+Pod-to-Pod communication
+Service-to-Pod communication
+
 ## Prerequisites
-Prerequisites
 
 Install:
-
+```bash
 Docker Desktop
 kubectl
 Minikube
 Git
-## Theory
-
-## Architecture
+```
 
 ## Lab Steps
-Step 1 - Install kubectl
+### Step 1 - Install kubectl
 
 Verify kubectl installation:
-
+```bash
 kubectl version --client
-
+```
 Expected:
 
 Client Version: v1.xx.x
-Step 2 - Install Minikube
+### Step 2 - Install Minikube
 
 Verify Minikube:
-
+```bash
 minikube version
-
+```
 Expected:
 
 minikube version: v1.xx.x
-Step 3 - Start Kubernetes Cluster
+### Step 3 - Start Kubernetes Cluster
 
 Start Minikube:
-
+```bash
 minikube start
-
+```
 Expected:
 
 Done! kubectl is now configured to use "minikube"
-Step 4 - Check Minikube Status
+### Step 4 - Check Minikube Status
 
 Command:
-
+```bash
 minikube status
-
+```
 Expected:
 
 host: Running
 kubelet: Running
 apiserver: Running
 kubeconfig: Configured
-Step 5 - Verify Kubernetes Cluster
+### Step 5 - Verify Kubernetes Cluster
 
 Check cluster information:
-
+```bash
 kubectl cluster-info
-
+```
 Example:
 
 Kubernetes control plane is running
-Step 6 - Check Nodes
+### Step 6 - Check Nodes
 
 Command:
-
+```bash
 kubectl get nodes
-
+```
 Expected:
 
 NAME       STATUS   ROLES           AGE
@@ -230,24 +267,24 @@ Explanation:
 Ready
  |
  Kubernetes node is healthy
-Step 7 - Check Kubernetes Namespaces
+### Step 7 - Check Kubernetes Namespaces
 
 Command:
-
+```bash
 kubectl get namespaces
-
+```
 Expected:
 
 default
 kube-system
 kube-public
 kube-node-lease
-Step 8 - Check Running System Pods
+### Step 8 - Check Running System Pods
 
 Command:
-
+```bash
 kubectl get pods -n kube-system
-
+```
 You will see Kubernetes internal components.
 
 Example:
@@ -256,24 +293,59 @@ coredns
 kube-apiserver
 kube-controller-manager
 kube-scheduler
-Step 9 - Basic kubectl Commands
+### Step 9 - Basic kubectl Commands
 Check Nodes
+```bash
 kubectl get nodes
+```
 Get Pods
+```bash
 kubectl get pods
+```
 Get All Resources
+```bash
 kubectl get all
-View Cluster Information
-kubectl cluster-info
-Get Kubernetes Version
-kubectl version
-
+```
 ## Verification
 
+View Cluster Information
+```bash
+kubectl cluster-info
+```
+Get Kubernetes Version
+```bash
+kubectl version
+```
 ## Troubleshooting
+### Problem 1: Minikube is not starting
 
+Check status:
+```bash
+minikube status
+```
+Restart cluster:
+```bash
+minikube stop
+```
+```bash
+minikube start
+```
+### Problem 2: kubectl Cannot Connect
+
+Check current context:
+```bash
+kubectl config current-context
+```
+Expected:
+
+minikube
+
+Change context:
+```bash
+kubectl config use-context minikube
+```
 ## Interview Questions
-nterview Questions
+
 1. What is Kubernetes?
 
 Kubernetes is a container orchestration platform used to deploy and manage containers.
@@ -297,44 +369,55 @@ Troubleshooting
 Minikube is not starting
 
 Check:
-
+```bash
 minikube status
-
+```
 Restart:
-
+```bash
 minikube stop
 minikube start
+```
 kubectl cannot connect
 
 Check context:
-
+```bash
 kubectl config current-context
-
+```
 Expected:
 
 minikube
 
 Change context:
-
+```bash
 kubectl config use-context minikube
-Lab Verification
+```
+### Lab Verification
 
 Run:
-
+```bash
 minikube status
 kubectl get nodes
 kubectl get pods -n kube-system
-
+```
 All components should be running.
 
 ## Cleanup
 Cleanup
 
 Stop Minikube:
-
+```bash
 minikube stop
-
+```
 Delete cluster:
-
+```bash
 minikube delete
+```
 ## Navigation
+Navigation
+
+Previous:
+
+None (First Lab)
+
+Next:
+labs/lab-02-first-pod.md

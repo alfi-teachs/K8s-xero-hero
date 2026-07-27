@@ -413,11 +413,6 @@ Delete cluster:
 minikube delete
 ```
 ## Navigation
-Navigation
-
-Previous:
-
-None (First Lab)
 
 Next:
 labs/lab-02-first-pod.md

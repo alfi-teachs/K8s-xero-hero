@@ -398,7 +398,7 @@ kubectl delete pod nginx-pod
 
 Previous:
 
-Lab  01 | [Install Kubernetes](labs/lab-01-install-kubernetes.md) | ⬜ |
+Lab  01 |install kubernetes 
 
 Next:
 

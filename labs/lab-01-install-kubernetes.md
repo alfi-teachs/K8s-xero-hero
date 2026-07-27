@@ -420,5 +420,4 @@ Previous:
 None (First Lab)
 
 Next:
-
-Lab 02 - First Kubernetes Pod
+labs/lab-02-first-pod.md

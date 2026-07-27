@@ -90,7 +90,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | Lab | Topic | Status |
 |------|-------|--------|
 | 24 | [Metrics Server](labs/lab-24-metrics-server.md) | ⬜ | 
-| 26 | [Horizontal Pod Autoscaler](labs/lab-26-hpa.md) | ⬜ |
+| 25 | [Horizontal Pod Autoscaler](labs/lab-25-hpa.md) | ⬜ | 
 
 ---
 

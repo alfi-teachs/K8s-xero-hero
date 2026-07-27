@@ -286,3 +286,71 @@ Verify:
 ```bash
 kubectl get pods
 ```
+## Verification
+
+Run:
+```bash
+kubectl get pods
+```
+Expected:
+
+nginx-pod   1/1   Running
+
+Check details:
+```bash
+kubectl describe pod nginx-pod
+```
+Check logs:
+```bash
+kubectl logs nginx-pod
+```
+Access container:
+```bash
+kubectl exec -it nginx-pod -- /bin/bash
+```
+## Troubleshooting
+Pod is stuck in Pending
+
+Check:
+```bash
+kubectl describe pod nginx-pod
+```
+Look at:
+
+Events:
+- ImagePullBackOff Error
+- Check image name:
+- image: nginx:latest
+
+View:
+```bash
+kubectl describe pod nginx-pod
+```
+Pod is not starting
+
+Check logs:
+```bash
+kubectl logs nginx-pod
+```
+## Interview Questions
+1. What is a Pod?
+
+A Pod is the smallest deployable unit in Kubernetes that contains one or more containers.
+
+2. Why does Kubernetes use Pods instead of containers directly?
+
+Pods provide:
+
+Networking
+Storage sharing
+Lifecycle management
+3. Difference between Pod and Container?
+
+Container runs the application.
+
+Pod manages one or more containers.
+
+4. What is kubectl apply?
+
+kubectl apply creates or updates Kubernetes resources from YAML files.
+

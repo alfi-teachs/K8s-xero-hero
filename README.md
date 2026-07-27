@@ -109,7 +109,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | Lab | Topic | Status |
 |------|-------|--------|
 | 29 | [Job](labs/lab-29-job.md) | ⬜ | 
-| 30 | [CronJob](labs/lab-31-cronjob.md) | ⬜ |
+| 30 | [CronJob](labs/lab-30-cronjob.md) | ⬜ | 
 
 ---
 
@@ -117,11 +117,11 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 32 | [CrashLoopBackOff](labs/lab-32-crashloopbackoff.md) | ⬜ |
-| 33 | [ImagePullBackOff](labs/lab-33-imagepullbackoff.md) | ⬜ |
-| 34 | [Pending Pods](labs/lab-34-pending-pods.md) | ⬜ |
-| 35 | [Service Troubleshooting](labs/lab-35-service-troubleshooting.md) | ⬜ |
-| 36 | [DNS Troubleshooting](labs/lab-36-dns-troubleshooting.md) | ⬜ |
+| 31 | [CrashLoopBackOff](labs/lab-31-crashloopbackoff.md) | ⬜ |
+| 32 | [ImagePullBackOff](labs/lab-32-imagepullbackoff.md) | ⬜ |
+| 33 | [Pending Pods](labs/lab-33-pending-pods.md) | ⬜ |
+| 34 | [Service Troubleshooting](labs/lab-34-service-troubleshooting.md) | ⬜ |
+| 35 | [DNS Troubleshooting](labs/lab-35-dns-troubleshooting.md) | ⬜ |
 
 ---
 
@@ -129,8 +129,8 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 37 | [Prometheus](labs/lab-37-prometheus.md) | ⬜ |
-| 38 | [Grafana](labs/lab-38-grafana.md) | ⬜ |
+| 36 | [Prometheus](labs/lab-36-prometheus.md) | ⬜ |
+| 37 | [Grafana](labs/lab-37-grafana.md) | ⬜ |
 
 ---
 
@@ -138,8 +138,8 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 39 | [Three-Tier Application](labs/lab-39-three-tier-app.md) | ⬜ |
-| 40 | [Production Kubernetes Project](labs/lab-40-production-project.md) | ⬜ |
+| 38| [Three-Tier Application](labs/lab-38-three-tier-app.md) | ⬜ |
+| 39 | [Production Kubernetes Project](labs/lab-39-production-project.md) | ⬜ |
 
 ---
 

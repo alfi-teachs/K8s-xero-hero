@@ -48,23 +48,21 @@ If one container crashes, Kubernetes automatically creates a new one.
 ---
 
 # Kubernetes Architecture
+             Kubernetes Cluster
 
-A Kubernetes cluster has two main parts:
-Kubernetes Cluster
+                   |
+                   |
 
-    |
-    |
+          +----------------+
+          |  Control Plane |
+          +----------------+
 
-+-------------------+
-| Control Plane |
-+-------------------+
+                   |
+                   |
 
-    |
-    |
-
-+-------------------+
-| Worker Nodes |
-+-------------------+
+          +----------------+
+          |  Worker Nodes  |
+          +----------------+
 ---
 
 # Control Plane (Master Node)

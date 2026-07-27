@@ -139,8 +139,8 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 38| [Three-Tier Application](labs/lab-38-three-tier-app.md) | ⬜ |
-| 39 | [Production Kubernetes Project](labs/lab-39-production-project.md) | ⬜ |
+| 39 | [Three-Tier Application](labs/lab-39-three-tier-app.md) | ⬜ |
+| 40 | [Production Kubernetes Project](labs/lab-40-production-project.md) | ⬜ |
 
 ---
 

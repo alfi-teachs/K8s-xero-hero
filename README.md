@@ -99,7 +99,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | Lab | Topic | Status |
 |------|-------|--------|
 | 26 | [ServiceAccount](labs/lab-26-serviceaccount.md) | ⬜ |
-| 27 | [Role and RoleBinding](labs/lab-28-role-rolebinding.md) | ⬜ |
+| 27 | [Role and RoleBinding](labs/lab-27-role-rolebinding.md) | ⬜ |   
 | 28 | [ClusterRole and ClusterRoleBinding](labs/lab-29-clusterrole.md) | ⬜ |
 
 ---

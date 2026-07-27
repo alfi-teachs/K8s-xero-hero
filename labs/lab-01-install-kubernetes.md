@@ -129,29 +129,37 @@ Nodes
 Pods
 Services
 Configurations
-Worker Node
+# Worker Node
 
-Worker nodes run the actual applications.
+Worker Nodes run the actual applications.
 
-Components:
+Each Worker Node contains:
 
 ### Kubelet
 
 Kubelet communicates with the Control Plane.
 
-It ensures containers are running.
+Responsibilities:
 
-Container Runtime
+Receive instructions from API Server
+Create containers
+Monitor container health
+### Container Runtime
 
-Runs containers.
+Container Runtime runs containers.
 
 Examples:
 
 Docker
 containerd
-kube-proxy
+### kube-proxy
 
-Handles network communication between Pods and Services.
+kube-proxy manages network communication.
+
+It allows:
+
+Pod-to-Pod communication
+Service-to-Pod communication
 
 ## Prerequisites
 Prerequisites
@@ -282,7 +290,33 @@ kubectl version
 ## Verification
 
 ## Troubleshooting
+### Problem 1: Minikube is not starting
 
+Check status:
+```bash
+minikube status
+```
+Restart cluster:
+```bash
+minikube stop
+```
+```bash
+minikube start
+```
+### Problem 2: kubectl Cannot Connect
+
+Check current context:
+```bash
+kubectl config current-context
+```
+Expected:
+
+minikube
+
+Change context:
+```bash
+kubectl config use-context minikube
+```
 ## Interview Questions
 nterview Questions
 1. What is Kubernetes?
@@ -352,3 +386,12 @@ Delete cluster:
 minikube delete
 ```
 ## Navigation
+Navigation
+
+Previous:
+
+None (First Lab)
+
+Next:
+
+Lab 02 - First Kubernetes Pod

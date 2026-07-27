@@ -70,7 +70,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 |------|-------|--------|
 | 19 | [Node Selector](labs/lab-19-node-selector.md) | ⬜ |
 | 20 | [Node Affinity](labs/lab-20-node-affinity.md) | ⬜ |                  
-| 21 |
+| 21 | [CPU Requests](labs/lab-21-cpu-requests.md) | ⬜ |  
 
 ---
 
@@ -78,7 +78,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 22 | [CPU Requests](labs/lab-22-cpu-requests.md) | ⬜ |
+| 22 | 
 | 23 | [CPU Limits](labs/lab-23-cpu-limits.md) | ⬜ |
 | 24 | [Namespaces](labs/lab-24-namespaces.md) | ⬜ |
 

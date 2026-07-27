@@ -117,7 +117,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 31 | [CrashLoopBackOff](labs/lab-31-crashloopbackoff.md) | ⬜ |
+| 31 | [CrashLoopBackOff](labs/lab-31-crashloopbackoff.md) | ⬜ |  
 | 32 | [ImagePullBackOff](labs/lab-32-imagepullbackoff.md) | ⬜ |
 | 33 | [Pending Pods](labs/lab-33-pending-pods.md) | ⬜ |
 | 34 | [Service Troubleshooting](labs/lab-34-service-troubleshooting.md) | ⬜ |

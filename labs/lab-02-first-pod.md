@@ -354,3 +354,52 @@ Pod manages one or more containers.
 
 kubectl apply creates or updates Kubernetes resources from YAML files.
 
+5. What is the difference between imperative and declarative approach?
+
+Imperative:
+
+Tell Kubernetes what to do
+
+Example:
+```bash
+kubectl run nginx
+```
+### Declarative:
+
+Describe desired state
+
+Example:
+```bash
+kubectl apply -f pod.yaml
+```
+Commands Learned
+```bash
+kubectl get pods
+
+kubectl apply -f pod.yaml
+
+kubectl describe pod nginx-pod
+
+kubectl logs nginx-pod
+
+kubectl exec -it nginx-pod -- /bin/bash
+
+kubectl get pod nginx-pod -o yaml
+
+kubectl delete pod nginx-pod
+Cleanup
+
+Delete Pod:
+
+kubectl delete pod nginx-pod
+```
+## Navigation
+
+Previous:
+
+Lab 01 - Install Kubernetes
+
+Next:
+
+Lab 03 - Multi Container Pod
+

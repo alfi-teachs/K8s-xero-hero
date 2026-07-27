@@ -69,8 +69,8 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | Lab | Topic | Status |
 |------|-------|--------|
 | 19 | [Node Selector](labs/lab-19-node-selector.md) | ⬜ |
-| 20 |
-| 21 | [Node Affinity](labs/lab-21-node-affinity.md) | ⬜ |
+| 20 | [Node Affinity](labs/lab-20-node-affinity.md) | ⬜ |                  
+| 21 |
 
 ---
 

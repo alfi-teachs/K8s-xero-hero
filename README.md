@@ -122,6 +122,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | 33 | [Pending Pods](labs/lab-33-pending-pods.md) | ⬜ |
 | 34 | [Service Troubleshooting](labs/lab-34-service-troubleshooting.md) | ⬜ |
 | 35 | [DNS Troubleshooting](labs/lab-35-dns-troubleshooting.md) | ⬜ |
+| 36 | [network troubleshooting ](labs/lab-36-network-troubleshooting.md)
 
 ---
 
@@ -129,8 +130,8 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 36 | [Prometheus](labs/lab-36-prometheus.md) | ⬜ |
-| 37 | [Grafana](labs/lab-37-grafana.md) | ⬜ |
+| 37 | [Prometheus](labs/lab-37-prometheus.md) | ⬜ |
+| 38 | [Grafana](labs/lab-38-grafana.md) | ⬜ |
 
 ---
 

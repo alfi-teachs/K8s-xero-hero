@@ -394,13 +394,5 @@ Delete Pod:
 ```bash
 kubectl delete pod nginx-pod
 ```
-## Navigation
 
-Previous:
-
-Lab  01 |install kubernetes 
-
-Next:
-
-Lab 03 - Multi Container Pod
 

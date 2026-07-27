@@ -122,3 +122,204 @@ Expected:
 
 NAME       STATUS   ROLES
 minikube   Ready    control-plane
+
+Lab Steps
+Step 1 - Check Existing Pods
+
+Command:
+
+kubectl get pods
+
+Expected:
+
+No resources found in default namespace.
+Step 2 - Create Pod YAML File
+
+Go to YAML folder:
+
+cd yaml/lab-02
+
+Create file:
+
+touch pod.yaml
+
+Open:
+
+code pod.yaml
+
+Add:
+
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+
+Save the file.
+
+Understanding YAML
+apiVersion
+
+Defines Kubernetes API version.
+
+Example:
+
+apiVersion: v1
+kind
+
+Defines the resource type.
+
+Example:
+
+kind: Pod
+metadata
+
+Contains information about the object.
+
+Example:
+
+metadata:
+  name: nginx-pod
+spec
+
+Defines desired configuration.
+
+Example:
+
+spec:
+  containers:
+containers
+
+Defines application containers.
+
+Example:
+
+image: nginx:latest
+### Step 3 - Create Pod
+
+Move back:
+
+cd ../..
+
+Apply YAML:
+```bash
+kubectl apply -f yaml/lab-02/pod.yaml
+```
+Expected:
+
+pod/nginx-pod created
+### Step 4 - Verify Pod
+
+Check:
+```bash
+kubectl get pods
+```
+Expected:
+
+NAME        READY   STATUS
+nginx-pod   1/1     Running
+###Step 5 - Watch Pod Creation
+
+Command:
+```bash
+kubectl get pods -w
+```
+You will see:
+
+- Pending
+- ContainerCreating
+- Running
+```bash
+CTRL + C
+```
+to exit.
+
+### Step 6 - Describe Pod
+
+Command:
+```bash
+kubectl describe pod nginx-pod
+```
+Check:
+```bash
+Pod name
+Labels
+Node
+IP address
+Container image
+Events
+```
+### Step 7 - View Pod YAML
+
+Command:
+```bash
+kubectl get pod nginx-pod -o yaml
+```
+This shows the complete Kubernetes object.
+
+### Step 8 - View Pod Logs
+
+Command:
+```bash
+kubectl logs nginx-pod
+```
+### Step 9 - Access Inside Container
+
+Enter the container:
+```bash
+kubectl exec -it nginx-pod -- /bin/bash
+```
+If bash is unavailable:
+```bash
+kubectl exec -it nginx-pod -- /bin/sh
+```
+Inside container:
+
+Check hostname:
+```bash
+hostname
+```
+Check files:
+```bash
+ls
+```
+Check running processes:
+```bash
+ps
+```
+Exit:
+
+exit
+### Step 10 - Delete Pod
+
+Delete:
+```bash
+kubectl delete pod nginx-pod
+```
+Verify:
+```bash
+kubectl get pods
+```
+Expected:
+
+No resources found
+### Step 11 - Recreate Pod
+
+Create again:
+```bash
+kubectl apply -f yaml/lab-02/pod.yaml
+```
+Verify:
+```bash
+kubectl get pods
+```

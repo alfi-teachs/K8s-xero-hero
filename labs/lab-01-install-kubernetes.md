@@ -306,6 +306,8 @@ Get All Resources
 ```bash
 kubectl get all
 ```
+## Verification
+
 View Cluster Information
 ```bash
 kubectl cluster-info
@@ -314,8 +316,6 @@ Get Kubernetes Version
 ```bash
 kubectl version
 ```
-## Verification
-
 ## Troubleshooting
 ### Problem 1: Minikube is not starting
 

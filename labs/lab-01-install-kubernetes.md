@@ -258,18 +258,27 @@ coredns
 kube-apiserver
 kube-controller-manager
 kube-scheduler
-Step 9 - Basic kubectl Commands
+### Step 9 - Basic kubectl Commands
 Check Nodes
+```bash
 kubectl get nodes
+```
 Get Pods
+```bash
 kubectl get pods
+```
 Get All Resources
+```bash
 kubectl get all
+```
 View Cluster Information
+```bash
 kubectl cluster-info
+```
 Get Kubernetes Version
+```bash
 kubectl version
-
+```
 ## Verification
 
 ## Troubleshooting
@@ -299,27 +308,28 @@ Troubleshooting
 Minikube is not starting
 
 Check:
-
+```bash
 minikube status
-
+```
 Restart:
-
+```bash
 minikube stop
 minikube start
+```
 kubectl cannot connect
 
 Check context:
-
+```bash
 kubectl config current-context
-
+```
 Expected:
 
 minikube
 
 Change context:
-
+```bash
 kubectl config use-context minikube
-
+```
 ### Lab Verification
 
 Run:

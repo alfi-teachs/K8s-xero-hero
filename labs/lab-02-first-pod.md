@@ -71,3 +71,54 @@ Pod
 |
 +-- sidecar container
 ```
+
+---
+
+# Two Ways to Create Kubernetes Resources
+
+Kubernetes supports:
+
+## 1. Imperative Approach
+
+We directly tell Kubernetes what to create.
+
+Example:
+
+```bash
+kubectl run nginx-pod --image=nginx
+```
+Kubernetes immediately creates the Pod.
+---------------------
+# 2. Declarative Approach
+
+We describe the desired state in a YAML file.
+
+Example:
+
+kind: Pod
+metadata:
+  name: nginx-pod
+
+Then apply:
+
+kubectl apply -f pod.yaml
+
+Kubernetes creates the required resource.
+
+Prerequisites
+
+Required:
+```bash
+Docker Desktop
+Minikube
+kubectl
+Git
+```
+Check cluster:
+```bash
+kubectl get nodes
+```
+Expected:
+
+NAME       STATUS   ROLES
+minikube   Ready    control-plane

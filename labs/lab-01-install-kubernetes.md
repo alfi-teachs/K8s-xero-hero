@@ -65,8 +65,6 @@ Kubernetes Cluster
 +-------------------+
 | Worker Nodes |
 +-------------------+
-
-
 ---
 
 # Control Plane (Master Node)
@@ -85,8 +83,9 @@ When we run:
 
 ```bash
 kubectl get pods
+```
 kubectl talks to the API Server.
-Scheduler
+### Scheduler
 
 Scheduler decides:
 
@@ -101,7 +100,8 @@ Scheduler
    |
    |
 Worker Node 1
-Controller Manager
+
+### Controller Manager
 
 Controller Manager watches the desired state.
 
@@ -119,7 +119,7 @@ Running Pods = 2
 
 Controller creates a new Pod.
 
-etcd
+### etcd
 
 etcd stores Kubernetes cluster information.
 
@@ -135,7 +135,7 @@ Worker nodes run the actual applications.
 
 Components:
 
-Kubelet
+### Kubelet
 
 Kubelet communicates with the Control Plane.
 
@@ -152,74 +152,76 @@ containerd
 kube-proxy
 
 Handles network communication between Pods and Services.
+
 ## Prerequisites
 Prerequisites
 
 Install:
-
+```bash
 Docker Desktop
 kubectl
 Minikube
 Git
+```
 ## Theory
 
 ## Architecture
 
 ## Lab Steps
-Step 1 - Install kubectl
+### Step 1 - Install kubectl
 
 Verify kubectl installation:
-
+```bash
 kubectl version --client
-
+```
 Expected:
 
 Client Version: v1.xx.x
-Step 2 - Install Minikube
+### Step 2 - Install Minikube
 
 Verify Minikube:
-
+```bash
 minikube version
-
+```
 Expected:
 
 minikube version: v1.xx.x
-Step 3 - Start Kubernetes Cluster
+### Step 3 - Start Kubernetes Cluster
 
 Start Minikube:
-
+```bash
 minikube start
-
+```
 Expected:
 
 Done! kubectl is now configured to use "minikube"
-Step 4 - Check Minikube Status
+### Step 4 - Check Minikube Status
 
 Command:
-
+```bash
 minikube status
-
+```
 Expected:
 
 host: Running
 kubelet: Running
 apiserver: Running
 kubeconfig: Configured
-Step 5 - Verify Kubernetes Cluster
+### Step 5 - Verify Kubernetes Cluster
 
 Check cluster information:
-
+```bash
 kubectl cluster-info
-
+```
 Example:
 
 Kubernetes control plane is running
-Step 6 - Check Nodes
+### Step 6 - Check Nodes
 
 Command:
-
+```bash
 kubectl get nodes
-
+```
 Expected:
 
 NAME       STATUS   ROLES           AGE
@@ -230,24 +232,24 @@ Explanation:
 Ready
  |
  Kubernetes node is healthy
-Step 7 - Check Kubernetes Namespaces
+### Step 7 - Check Kubernetes Namespaces
 
 Command:
-
+```bash
 kubectl get namespaces
-
+```
 Expected:
 
 default
 kube-system
 kube-public
 kube-node-lease
-Step 8 - Check Running System Pods
+### Step 8 - Check Running System Pods
 
 Command:
-
+```bash
 kubectl get pods -n kube-system
-
+```
 You will see Kubernetes internal components.
 
 Example:
@@ -317,24 +319,26 @@ minikube
 Change context:
 
 kubectl config use-context minikube
-Lab Verification
+
+### Lab Verification
 
 Run:
-
+```bash
 minikube status
 kubectl get nodes
 kubectl get pods -n kube-system
-
+```
 All components should be running.
 
 ## Cleanup
 Cleanup
 
 Stop Minikube:
-
+```bash
 minikube stop
-
+```
 Delete cluster:
-
+```bash
 minikube delete
+```
 ## Navigation

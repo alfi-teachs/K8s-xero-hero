@@ -98,7 +98,22 @@ When we run:
 ```bash
 kubectl get pods
 ```
-kubectl talks to the API Server.
+kubectl sends the request to the API Server.
+
+Example:
+
+```bash
+User
+ |
+ |
+kubectl
+ |
+ |
+API Server
+ |
+ |
+Kubernetes Cluster
+```
 ### Scheduler
 
 Scheduler decides:
@@ -106,7 +121,7 @@ Scheduler decides:
 "On which worker node should this Pod run?"
 
 Example:
-
+```bash
 New Pod
    |
    |
@@ -114,6 +129,8 @@ Scheduler
    |
    |
 Worker Node 1
+```
+The Scheduler checks available resources and selects the best worker node.
 
 ### Controller Manager
 
@@ -176,7 +193,6 @@ Pod-to-Pod communication
 Service-to-Pod communication
 
 ## Prerequisites
-Prerequisites
 
 Install:
 ```bash
@@ -185,9 +201,6 @@ kubectl
 Minikube
 Git
 ```
-## Theory
-
-## Architecture
 
 ## Lab Steps
 ### Step 1 - Install kubectl
@@ -332,7 +345,7 @@ Change context:
 kubectl config use-context minikube
 ```
 ## Interview Questions
-nterview Questions
+
 1. What is Kubernetes?
 
 Kubernetes is a container orchestration platform used to deploy and manage containers.

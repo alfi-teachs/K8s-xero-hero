@@ -98,9 +98,9 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 27 | [ServiceAccount](labs/lab-27-serviceaccount.md) | ⬜ |
-| 28 | [Role and RoleBinding](labs/lab-28-role-rolebinding.md) | ⬜ |
-| 29 | [ClusterRole and ClusterRoleBinding](labs/lab-29-clusterrole.md) | ⬜ |
+| 26 | [ServiceAccount](labs/lab-26-serviceaccount.md) | ⬜ |
+| 27 | [Role and RoleBinding](labs/lab-28-role-rolebinding.md) | ⬜ |
+| 28 | [ClusterRole and ClusterRoleBinding](labs/lab-29-clusterrole.md) | ⬜ |
 
 ---
 
@@ -108,8 +108,8 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 
 | Lab | Topic | Status |
 |------|-------|--------|
-| 30 | [Job](labs/lab-30-job.md) | ⬜ |
-| 31 | [CronJob](labs/lab-31-cronjob.md) | ⬜ |
+| 29| [Job](labs/lab-30-job.md) | ⬜ |
+| 30 | [CronJob](labs/lab-31-cronjob.md) | ⬜ |
 
 ---
 

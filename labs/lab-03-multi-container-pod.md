@@ -1,15 +1,16 @@
-# LAB 04 - Labels and Selectors
+# LAB 03 - Multi Container Pod
 
 ## Objective
 
 In this lab, you will learn:
 
-- What Kubernetes Labels are
-- Why Labels are important
-- How to add Labels to Pods
-- How Selectors work
-- Filter resources using Labels
-- Understand how Services use Selectors
+- What is a Multi Container Pod
+- Why multiple containers run inside one Pod
+- Shared network between containers
+- Shared storage between containers
+- Create a Pod with nginx and busybox containers
+- Access containers inside a Pod
+- Test communication between containers
 
 ---
 
@@ -17,134 +18,99 @@ In this lab, you will learn:
 
 By the end of this lab, you will understand:
 
-- metadata.labels
-- label key-value pairs
-- kubectl label command
-- Label selectors
-- Matching Pods using labels
+- Pod design pattern
+- Sidecar containers
+- Container communication
+- Shared localhost networking
+- Shared volumes
 
 ---
 
-# What are Kubernetes Labels?
+# What is a Multi Container Pod?
 
-Labels are key-value pairs attached to Kubernetes objects.
+A Pod can contain one or more containers.
 
-They help Kubernetes identify and organize resources.
+Normally:
+
+```
+Pod
+ |
+ +---- Application Container
+```
+
+But Kubernetes also supports:
+
+```
+Pod
+ |
+ +----------------+
+ |                |
+nginx          busybox
+Container      Container
+```
+
+All containers inside the same Pod:
+
+- Share the same network
+- Share the same IP address
+- Can communicate using localhost
+- Can share storage volumes
+
+---
+
+# Why Use Multiple Containers?
+
+A common pattern is the **Sidecar Pattern**.
 
 Example:
 
-```yaml
-labels:
-  app: nginx
-  environment: development
-```
-
-Here:
+Main Application:
 
 ```
-Key              Value
-
-app              nginx
-
-environment      development
+Web Application
 ```
+
+Sidecar Container:
+
+```
+Log Collector
+```
+
+The sidecar helps the main application.
+
+Examples:
+
+- Log collection
+- Monitoring agents
+- Configuration reloaders
+- Security scanners
 
 ---
 
-# Why Do We Need Labels?
+# Container Communication
 
-Imagine you have 100 Pods running.
-
-Without labels:
+Containers inside the same Pod communicate using:
 
 ```
-pod1
-pod2
-pod3
-pod4
+localhost
 ```
-
-It becomes difficult to manage.
-
-With labels:
-
-```
-Frontend Pods
-
-app=frontend
-
-
-Backend Pods
-
-app=backend
-```
-
-Now Kubernetes can easily identify them.
-
----
-
-# What are Selectors?
-
-Selectors are used to find objects with specific labels.
 
 Example:
 
-Label:
+```
+Pod IP: 10.244.0.5
 
-```yaml
-app: nginx
+
+nginx container
+      |
+      |
+ localhost:80
+      |
+      |
+busybox container
 ```
 
-Selector:
-
-```yaml
-selector:
-  app: nginx
-```
-
-Kubernetes matches objects where:
-
-```
-label = selector
-```
-
----
-
-# Real World Example
-
-A Service needs to know which Pods receive traffic.
-
-Service:
-
-```
-selector:
-   app: nginx
-```
-
-Pods:
-
-```
-Pod 1
-label:
- app: nginx
-
-
-Pod 2
-label:
- app: nginx
-
-
-Pod 3
-label:
- app: database
-```
-
-Traffic goes only to:
-
-```
-Pod 1
-Pod 2
-```
+They do not need a Kubernetes Service to communicate.
 
 ---
 
@@ -152,11 +118,11 @@ Pod 2
 
 Required:
 
-- Kubernetes cluster running
+- Kubernetes running
 - Minikube started
 - kubectl installed
 
-Check:
+Check cluster:
 
 ```bash
 kubectl get nodes
@@ -165,26 +131,49 @@ kubectl get nodes
 Expected:
 
 ```
-minikube   Ready
+NAME       STATUS   ROLES
+minikube   Ready    control-plane
 ```
 
 ---
 
 # Lab Steps
 
-## Step 1 - Create Pod YAML
+## Step 1 - Create YAML Folder
 
-Create file:
+Go to project directory:
 
 ```bash
-touch yaml/lab-04/labels-pod.yaml
+cd yaml
+```
+
+Create lab folder:
+
+```bash
+mkdir lab-03
+```
+
+Move inside:
+
+```bash
+cd lab-03
+```
+
+Create YAML file:
+
+```bash
+touch multi-container-pod.yaml
 ```
 
 Open:
 
 ```bash
-code yaml/lab-04/labels-pod.yaml
+code multi-container-pod.yaml
 ```
+
+---
+
+# Step 2 - Create Multi Container Pod YAML
 
 Add:
 
@@ -194,157 +183,266 @@ apiVersion: v1
 kind: Pod
 
 metadata:
-  name: nginx-label-pod
+  name: multi-container-pod
   labels:
-    app: nginx
-    environment: dev
+    app: multi-container
 
 spec:
+
   containers:
-    - name: nginx
-      image: nginx:latest
-      ports:
-        - containerPort: 80
+
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+      - containerPort: 80
+
+
+  - name: busybox-container
+    image: busybox
+    command:
+      - sleep
+      - "3600"
 ```
 
-Save.
+Save the file.
 
 ---
 
-# Step 2 - Create Pod
+# Understanding YAML
 
-Apply:
+## Pod Name
+
+```yaml
+metadata:
+  name: multi-container-pod
+```
+
+Creates a Pod named:
+
+```
+multi-container-pod
+```
+
+---
+
+## First Container
+
+```yaml
+name: nginx-container
+image: nginx:latest
+```
+
+Runs nginx web server.
+
+---
+
+## Second Container
+
+```yaml
+name: busybox-container
+image: busybox
+```
+
+Busybox is a lightweight Linux container.
+
+It is useful for:
+
+- Testing
+- Debugging
+- Network checks
+
+---
+
+# Step 3 - Create Pod
+
+Go back to project root:
 
 ```bash
-kubectl apply -f yaml/lab-04/labels-pod.yaml
+cd ../..
+```
+
+Apply YAML:
+
+```bash
+kubectl apply -f yaml/lab-03/multi-container-pod.yaml
 ```
 
 Expected:
 
 ```
-pod/nginx-label-pod created
+pod/multi-container-pod created
 ```
 
 ---
 
-# Step 3 - View Labels
+# Step 4 - Check Pod
+
+Run:
+
+```bash
+kubectl get pods
+```
+
+Expected:
+
+```
+NAME                   READY   STATUS
+multi-container-pod    2/2     Running
+```
+
+Explanation:
+
+```
+2/2 means:
+
+2 containers created
+
+2 containers running
+```
+
+---
+
+# Step 5 - View Pod Details
+
+Run:
+
+```bash
+kubectl describe pod multi-container-pod
+```
+
+Observe:
+
+- Two containers
+- Container images
+- Container status
+- Events
+
+---
+
+# Step 6 - List Containers Inside Pod
 
 Command:
 
 ```bash
-kubectl get pods --show-labels
+kubectl get pod multi-container-pod -o jsonpath='{.spec.containers[*].name}'
 ```
 
-Output:
+Expected:
 
 ```
-NAME              READY   STATUS    LABELS
-
-nginx-label-pod   1/1     Running   app=nginx,environment=dev
-```
-
----
-
-# Step 4 - Filter Pods Using Labels
-
-Command:
-
-```bash
-kubectl get pods -l app=nginx
-```
-
-Output:
-
-```
-nginx-label-pod
+nginx-container busybox-container
 ```
 
 ---
 
-# Step 5 - Filter Environment Label
+# Step 7 - Access nginx Container
 
-Command:
+Enter nginx container:
 
 ```bash
-kubectl get pods -l environment=dev
+kubectl exec -it multi-container-pod -c nginx-container -- /bin/bash
 ```
 
-Output:
+Check nginx files:
 
+```bash
+ls /usr/share/nginx/html
 ```
-nginx-label-pod
+
+Exit:
+
+```bash
+exit
 ```
 
 ---
 
-# Step 6 - Add Label Using Command
+# Step 8 - Access Busybox Container
 
-Add another label:
-
-```bash
-kubectl label pod nginx-label-pod tier=frontend
-```
-
-Check:
+Enter busybox:
 
 ```bash
-kubectl get pods --show-labels
+kubectl exec -it multi-container-pod -c busybox-container -- sh
 ```
 
-You should see:
+Inside container:
 
+Check hostname:
+
+```bash
+hostname
 ```
-tier=frontend
+
+Exit:
+
+```bash
+exit
 ```
 
 ---
 
-# Step 7 - Remove Label
+# Step 9 - Test Container Communication
 
-Remove label:
+Enter busybox:
 
 ```bash
-kubectl label pod nginx-label-pod tier-
+kubectl exec -it multi-container-pod -c busybox-container -- sh
 ```
 
-Check:
+Install curl:
 
 ```bash
-kubectl get pods --show-labels
+wget -qO- http://localhost
+```
+
+You should see nginx HTML output.
+
+Why?
+
+Because both containers share the same network.
+
+Exit:
+
+```bash
+exit
 ```
 
 ---
 
-# Step 8 - Describe Pod Labels
+# Step 10 - View Logs
 
-Command:
+nginx logs:
 
 ```bash
-kubectl describe pod nginx-label-pod
+kubectl logs multi-container-pod -c nginx-container
 ```
 
-Look for:
+busybox logs:
 
-```
-Labels:
- app=nginx
- environment=dev
+```bash
+kubectl logs multi-container-pod -c busybox-container
 ```
 
 ---
 
-# Step 9 - Delete Pod
+# Step 11 - Delete Pod
 
 Delete:
 
 ```bash
-kubectl delete pod nginx-label-pod
+kubectl delete pod multi-container-pod
 ```
 
 Verify:
 
 ```bash
 kubectl get pods
+```
+
+Expected:
+
+```
+No resources found
 ```
 
 ---
@@ -354,98 +452,111 @@ kubectl get pods
 Create again:
 
 ```bash
-kubectl apply -f yaml/lab-04/labels-pod.yaml
+kubectl apply -f yaml/lab-03/multi-container-pod.yaml
 ```
 
 Check:
 
 ```bash
-kubectl get pods --show-labels
+kubectl get pods
 ```
 
-Filter:
+Expected:
 
-```bash
-kubectl get pods -l app=nginx
+```
+multi-container-pod   2/2   Running
 ```
 
 ---
 
 # Troubleshooting
 
-## Label selector returns no pods
+## Problem: Pod shows 1/2 Running
 
-Check labels:
+Check:
 
 ```bash
-kubectl get pods --show-labels
+kubectl describe pod multi-container-pod
 ```
 
-Make sure selector matches:
-
-Example:
-
-Pod:
+Look at:
 
 ```
-app=nginx
+Events
 ```
 
-Selector:
+---
 
-```
-app=nginx
+## Problem: Container not starting
+
+Check logs:
+
+```bash
+kubectl logs multi-container-pod -c container-name
 ```
 
 ---
 
 # Interview Questions
 
-## 1. What are Kubernetes Labels?
+## 1. Can a Pod have multiple containers?
 
-Labels are key-value pairs used to organize and identify Kubernetes resources.
-
----
-
-## 2. Why are Labels important?
-
-Labels help Kubernetes:
-
-- Group resources
-- Select Pods
-- Connect Services
-- Manage deployments
+Yes. A Pod can contain one or more containers.
 
 ---
 
-## 3. What is a Selector?
+## 2. How do containers communicate inside the same Pod?
 
-A Selector searches Kubernetes objects based on labels.
+Containers communicate using localhost because they share the same network namespace.
 
 ---
 
-## 4. How does a Service find Pods?
+## 3. Do containers in the same Pod get different IP addresses?
 
-A Service uses selectors to match Pod labels.
+No.
+
+All containers share the same Pod IP address.
+
+---
+
+## 4. What is a sidecar container?
+
+A sidecar container is a helper container running alongside the main application container.
+
+Examples:
+
+- Logging
+- Monitoring
+- Security
+
+---
+
+## 5. Difference between Pod and Container?
+
+Container:
+
+- Runs application
+
+Pod:
+
+- Manages one or more containers
 
 ---
 
 # Commands Learned
 
 ```bash
-kubectl get pods --show-labels
+kubectl get pods
 
-kubectl get pods -l app=nginx
+kubectl describe pod multi-container-pod
 
-kubectl label pod nginx-label-pod tier=frontend
+kubectl exec -it multi-container-pod -c container-name -- sh
 
-kubectl label pod nginx-label-pod tier-
+kubectl logs multi-container-pod -c container-name
 
-kubectl describe pod nginx-label-pod
+kubectl delete pod multi-container-pod
 
-kubectl apply -f labels-pod.yaml
-
-kubectl delete pod nginx-label-pod
+kubectl apply -f multi-container-pod.yaml
 ```
 
 ---
@@ -455,7 +566,7 @@ kubectl delete pod nginx-label-pod
 Delete Pod:
 
 ```bash
-kubectl delete pod nginx-label-pod
+kubectl delete pod multi-container-pod
 ```
 
 ---
@@ -464,11 +575,11 @@ kubectl delete pod nginx-label-pod
 
 Previous:
 
-[Lab 03 - Multi Container Pod](lab-03-multi-container-pod.md)
+[Lab 02 - First Kubernetes Pod](lab-02-first-pod.md)
 
 Next:
 
-[Lab 05 - ReplicaSet](lab-05-replicaset.md)
+[Lab 04 - Labels and Selectors](lab-04-labels-selectors.md)
 
 ---
 
@@ -476,8 +587,8 @@ Next:
 
 You have successfully learned:
 
-- Kubernetes Labels
-- Label selectors
-- Filtering Pods
-- Adding and removing labels
-- How Kubernetes connects resources using labels
+- Multi container Pods
+- Sidecar pattern
+- Shared networking
+- Container communication
+- Container troubleshooting

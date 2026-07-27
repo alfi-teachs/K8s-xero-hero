@@ -109,7 +109,7 @@ A complete hands-on Kubernetes learning repository designed for beginners who wa
 | Lab | Topic | Status |
 |------|-------|--------|
 | 29 | [Job](labs/lab-29-job.md) | ⬜ | 
-| 30 | [CronJob](labs/lab-30-cronjob.md) | ⬜ | 
+| 30 | [CronJob](labs/lab-30-cronjob.md) | ⬜ | labs/lab-30-cronjob.md
 
 ---
 
